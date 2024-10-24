@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    height: 100vh; 
+    margin: 0; 
+}
+
+h1 {
+    text-align: center; 
+    color: #333;
+    font-size: 2em; 
+    margin-bottom: 20px; 
+}
+
+form {
+    text-align: center; 
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 5px;
+}
