@@ -1,0 +1,29 @@
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    height: 100vh; 
+    margin: 0; 
+    background-color: rgb(255, 213, 182);
+}
+
+
+h1 {
+    text-align: center; 
+    border: 3px solid #ccc; 
+    padding: 20px; 
+    border-radius: 12px;
+    background-color: rgb(255, 237, 225);
+    border-color: rgb(211, 160, 129);
+}
+
+form {
+    text-align: center; 
+    border: 3px solid #ccc; 
+    padding: 20px; 
+    border-radius: 12px;
+    background-color: rgb(255, 237, 225);
+    border-color: rgb(211, 160, 129);
+}
