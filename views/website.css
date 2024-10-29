@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    height: 100vh; 
+    margin: 0; 
+    background-color: #f1aeec;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; 
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+    margin-left: 150px;
+}
+
+.userReg {
+    position: relative; 
+    margin-left: -50px;
+}
+
+.dogImage {
+    display: block;
+    margin: 0 auto; 
+    width: 400px; 
+    height: auto; 
+    position: relative;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.dogImage img {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #120202;
+    padding: 5px;
+}
+
+img {
+    max-width: 100%;
+    height: auto; 
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    margin-top: -100px; 
+    font-family: 'Dancing Script', cursive;
+}
+h2 {
+    text-align: center; 
+    color: #333;
+    font-size: 1.5em; 
+    margin-bottom: 20px; 
+}
+
+form {
+    text-align: center; 
+    border: 1px solid #000000; 
+    padding: 20px; 
+    border-radius: 5px;
+    background-color: #c9c9c9;
+}
