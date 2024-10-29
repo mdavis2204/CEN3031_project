@@ -6,13 +6,27 @@ body {
     flex-direction: column; 
     height: 100vh; 
     margin: 0; 
-    background-color: rgb(255, 213, 182);
+    background-color: rgb(240, 222, 210);
 }
 
+title {
+    text-align: center; 
+    padding: 20px; 
+}
 
 h1 {
     text-align: center; 
     border: 3px solid #ccc; 
+    padding: 20px; 
+    border-radius: 12px;
+    background-color: rgb(255, 237, 225);
+    border-color: rgb(211, 160, 129);
+}
+
+h2 {
+    text-align: center; 
+    border: 3px solid #ccc; 
+    font-size: 40px;
     padding: 20px; 
     border-radius: 12px;
     background-color: rgb(255, 237, 225);
@@ -26,4 +40,11 @@ form {
     border-radius: 12px;
     background-color: rgb(255, 237, 225);
     border-color: rgb(211, 160, 129);
+}
+
+a {
+    text-align: center; 
+    padding: 20px; 
+    text-decoration: none;
+    color: rgb(0, 0, 0);
 }
