@@ -4,27 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawSwipe</title>
-    <link rel="stylesheet" href="/style.css"> 
+    <link rel="stylesheet" href="website.css"> 
 </head>
 <body>
-    <div>
-        <h1>PawSwipe: User Registration</h1> 
-    </div>
-        <form action="/register" method="POST">
-            <label for="userName">Username:</label><br>
-            <input type="text" id="userName" name="userName" required><br>
+    <h1>PawSwipe</h1> 
+    <div class="center">
+        <div class="userReg">
+            <h2>User Login:</h2> 
+            <form action="/submit" method="POST">
+                <label for="userName">Username:</label><br>
+                <input type="text" id="userName" name="userName" required><br>
                 
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
                 
-            <label for="uType">Select user type:</label><br>
-            <input type="radio" id="PetOwner" name="userType" value="Pet Owner" required>
-            <label for="PetOwner">Pet Owner</label><br>
+                <label for="uType">Select user type:</label><br>
+                <input type="radio" id="PetOwner" name="userType" value="Pet Owner" required>
+                <label for="PetOwner">Pet Owner</label><br>
                 
-            <input type="radio" id="PetSitter" name="userType" value="Pet Sitter" required>
-            <label for="PetSitter">Pet Sitter</label><br><br>
+                <input type="radio" id="PetSitter" name="userType" value="Pet Sitter" required> 
+                <label for="PetSitter">Pet Sitter</label><br><br>
 
-            <input type="submit" value="Submit">
-        </form>  
+                <input type="submit" value="Enter">
+            </form>
+        </div>
+        <div class="dogImage">
+            <img src="images/dog.jpg" alt="Dog Image">
+        </div>
+    </div>
 </body>
 </html>

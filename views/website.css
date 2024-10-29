@@ -8,6 +8,13 @@ body {
     background-color: #f1aeec;
 }
 
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; 
+}
+
 .center {
     display: flex;
     justify-content: center;
