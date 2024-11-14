@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script>
+        function updateLabel() {
+            const role = document.querySelector('input[name="role"]:checked').value;
+            const label = document.getElementById("profilePictureLabel");
+            if (role === "Pet Owner") {
+                label.textContent = "Pet Picture";
+            } else {
+                label.textContent = "Picture of Yourself";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Profile Setup</h2>
+    <form action="/setup" method="POST" enctype="multipart/form-data">
+        <!-- Name field -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <!-- Pet owner/Pet sitter selection -->
+        <div class="form-group">
+            <label>Are you a Pet Owner or a Pet Sitter?</label>
+            <input type="radio" id="petOwner" name="role" value="Pet Owner" onchange="updateLabel()" required>
+            <label for="petOwner">Pet Owner</label>
+            <input type="radio" id="petSitter" name="role" value="Pet Sitter" onchange="updateLabel()" required>
+            <label for="petSitter">Pet Sitter</label>
+        </div>
+
+        <!-- Profile Picture field with conditional labeling -->
+        <div class="form-group">
+            <label id="profilePictureLabel" for="profilePicture">Profile Picture</label>
+            <input type="file" id="profilePicture" name="profilePicture" accept=".png" required>
+        </div>
+
+        <!-- City field -->
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit">Save Profile</button>
+    </form>
+</div>
+
+</body>
+</html>

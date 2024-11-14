@@ -41,6 +41,7 @@ form {
     border-radius: 12px;
     background-color: rgb(255, 237, 225);
     border-color: rgb(211, 160, 129);
+    line-height: 2;
 }
 
 a {

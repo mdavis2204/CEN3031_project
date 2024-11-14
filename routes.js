@@ -29,9 +29,15 @@ router.get('/register', (req, res) => {
     res.sendFile(root + '/views/register.html')
 })
 
+//setup
+router.get('/setup', (req, res) => {
+  res.sendFile(root + '/views/setup.html')
+})
+
 //register attempt
 router.post('/register', async(req, res) => {
     const { userName, password } = req.body;
+    const setupComplete = false;
     console.log(req.body)
 
     try {
@@ -44,11 +50,11 @@ router.post('/register', async(req, res) => {
       }
   
       // make new user if no match found
-      const newUser = new User({ userName, password });
+      const newUser = new User({ userName, password, setupComplete });
       await newUser.save();
   
       console.log("New user created successfully.");
-      return res.status(200).json({ message: 'Form submitted successfully!' });
+      return res.sendFile(root + '/views/setup.html')
     } catch (error) {
       console.error("Error occurred while submitting the form:", error);
     }
