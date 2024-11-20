@@ -19,9 +19,29 @@ router.get('/login', (req, res) => {
 })
 
 //login attempt
-router.post('/login', (req, res) => {
-    res.sendFile(root + '/views/login.html')
-    res.json({mssg: 'login attempt'})
+router.post('/login', async (req, res) => {
+  const { userName, password } = req.body;
+  console.log(req.body);
+  try {
+      // Find user by username
+      const user = await User.findOne({ userName });
+      if (!user) {
+          console.log("Username not found.");
+          return res.status(404).json({ error: 'Username not found' });
+      }
+
+      // Compare the provided password with the stored password
+      if (user.password !== password) {
+          console.log("Incorrect password.");
+          return res.status(401).json({ error: 'Incorrect password' });
+      }
+
+      console.log("Login successful!");
+      return res.json({ message: 'Login successful' });
+  } catch (error) {
+      console.error("Error occurred during login:", error);
+      res.status(500).json({ error: 'An error occurred during login' });
+  }
 })
 
 //home->register
