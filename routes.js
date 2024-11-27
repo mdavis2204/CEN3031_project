@@ -80,5 +80,70 @@ router.post('/register', async(req, res) => {
     }
 })
 
+// Takes username, date range in Date() format, and sitting/service level. Returns true if time is added, false if not
+router.post('/addTime', async (req, res) => {
+  const { userName, startDate, endDate, serviceLevel } = req.body;
+
+  try {
+      // Validate input
+      if (new Date(startDate) >= new Date(endDate)) {
+          return false;
+      }
+
+      // Find user
+      const user = await User.findOne({ userName });
+      if (!user) {
+          return false;
+      }
+
+      // Add new time range
+      user.timeRanges.push({ startDate, endDate, serviceLevel });
+      await user.save();
+
+      return true;
+      
+  } catch (error) {
+      console.error('Error adding time range:', error);
+      return false;
+  }
+});
+
+// Takes in username and date index from getTimes, returns true if time is successfully removed, false if not
+router.post('/removeTime', async (req, res) => {
+  const { userName, timeRangeId } = req.body;
+
+  try {
+      const user = await User.findOne({ userName });
+      if (!user) {
+          return false;
+      }
+
+      user.timeRanges = user.timeRanges.filter((range) => range._id.toString() !== timeRangeId);
+      await user.save();
+
+      return true;
+
+  } catch (error) {
+      console.error('Error removing time range:', error);
+      return false;
+  }
+});
+
+// Takes in username, returns a list of timeRanges or errors if user does not exist
+router.get('/getTimes', async (req, res) => {
+  const { userName } = req.query;
+
+  try {
+      const user = await User.findOne({ userName });
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' }); // Found out that I could do this, may update future
+      }
+
+      return res.status(200).json({ timeRanges: user.timeRanges });
+  } catch (error) {
+      console.error('Error listing time ranges:', error);
+      return res.status(500).json({ error: 'Server error' });
+  }
+});
 
 module.exports = router
