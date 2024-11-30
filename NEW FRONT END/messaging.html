@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messaging Platform</title>
+  <link rel="stylesheet" href="messaging.css">
+</head>
+<body>
+  <!-- Header with Back Button and "PawSwipe" centered -->
+  <header class="page-header">
+    <button id="backButton" class="back-button">← Back</button>
+    <h3 class="page-title">PawSwipe</h3>
+  </header>
+
+  <div class="container">
+    <!-- Left Panel: Contacts List -->
+    <div class="contact-list">
+      <h2>Contacts</h2>
+      <!-- Contact items will be dynamically injected here -->
+    </div>
+    
+    <!-- Right Panel: Conversation -->
+    <div class="conversation">
+      <header>
+        <h1>Chat with Buddy</h1>
+      </header>
+      <div class="messages">
+        <!-- Messages will be inserted here dynamically by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Input Below Conversation -->
+  <div class="message-input">
+    <input type="text" id="newMessage" placeholder="Type your message...">
+    <button id="sendMessage">Send</button>
+  </div>
+
+  <script src="messaging.js"></script>
+</body>
+</html>
