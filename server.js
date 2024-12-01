@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const routes = require('./routes')
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const session = require('express-session');
+
 
 require('dotenv').config()
 
@@ -20,8 +22,21 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
+app.use(
+    session({
+      secret: 'your_secret_key',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { secure: false }, // Set to true if using HTTPS
+    })
+  );
 //routes
 app.use('/', routes)
+
+
+
+
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)

@@ -31,10 +31,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    isCustomer: { // True if customer, false if sitter
-        type: Boolean,
-        required: true
-    },
+
     timeRanges: [timeRangeSchema]
 });
 

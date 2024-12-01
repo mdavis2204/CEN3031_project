@@ -4,6 +4,7 @@ const newMessageInput = document.getElementById('newMessage');
 const conversationContainer = document.querySelector('.conversation .messages');
 const contactList = document.querySelector('.contact-list');
 const header = document.querySelector('header h1');
+const backButton = document.getElementById('backButton');
 
 // Sample static data (replace with API calls to fetch dynamic data)
 const contacts = [
@@ -98,6 +99,12 @@ newMessageInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         sendMessage();
     }
+});
+
+// Back button to the swipe page
+backButton.addEventListener('click', () => {
+    console.log("Back button clicked");
+    window.history.back(); // Goes to the previous page in history
 });
 
 // Initialize the app

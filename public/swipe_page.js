@@ -11,6 +11,9 @@ const dislikeButton = document.querySelector('.button.dislike');
 const likeButton = document.querySelector('.button.like');
 const editButton = document.querySelector('.circle-button.edit');
 const messageButton = document.querySelector('.circle-button.message');
+const closeButton = document.querySelector('.close-button');
+const logoutButton = document.getElementById('logoutButton');
+
 
 // Populate Cards
 function createCard(data) {
@@ -49,17 +52,51 @@ function handleSwipe(direction) {
 }
 
 // Button Event Listeners
-likeButton.addEventListener('click', () => handleSwipe("like"));
+likeButton.addEventListener('click', () => {
+  console.log("Like button pressed");
+  handleSwipe("like");
+});
+
 dislikeButton.addEventListener('click', () => handleSwipe("dislike"));
 
-// Edit Profile Button Event Listener
-editButton.addEventListener('click', () => {
-  alert("Edit Profile clicked");
-  // You can add the functionality for profile editing here
-});
 
 // Messaging Button Event Listener
 messageButton.addEventListener('click', () => {
-  alert("Messages clicked");
-  // You can add the functionality for messaging here
+  console.log("Messages clicked");
+  window.location.href = "/messaging";
+});
+
+
+// Event Listener for Edit Profile Button
+editButton.addEventListener('click', async () => {
+  try {
+    const response = await fetch('/getUserInfo');
+    if (!response.ok) {
+      throw new Error('Failed to fetch user info');
+    }
+
+    const userData = await response.json();
+    console.log("User data fetched:", userData);
+
+    // Populate the user-info section
+    document.getElementById('user-name').textContent = userData.userName;
+
+    // Display the user-info section
+    const userInfoSection = document.querySelector('.user-info');
+    userInfoSection.style.display = 'block'; // Make it visible
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+  }
+});
+
+
+closeButton.addEventListener('click', () => {
+  const userInfoSection = document.querySelector('.user-info');
+  userInfoSection.style.display = 'none'; // Hide the user info section
+  console.log("Close button clicked");
+});
+
+logoutButton.addEventListener('click', () => {
+  console.log("Logout button clicked");
+  window.location.href = '/'; // Redirect to the home page
 });
