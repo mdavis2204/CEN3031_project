@@ -1,10 +1,3 @@
-// Sample Data for Cards
-const cardsData = [
-    { image: "dog1.jpg", name: "Buddy", description: "Playful and energetic!" },
-    { image: "dog2.jpg", name: "Milo", description: "Loves cuddles and treats." },
-    { image: "dog3.jpg", name: "Daisy", description: "A quiet and friendly pup." }
-];
-
 // Selectors
 const cardContainer = document.querySelector('.card-container');
 const dislikeButton = document.querySelector('.button.dislike');
@@ -14,8 +7,7 @@ const messageButton = document.querySelector('.circle-button.message');
 const closeButton = document.querySelector('.close-button');
 const logoutButton = document.getElementById('logoutButton');
 
-
-// Populate Cards
+// Function to Create Card Element
 function createCard(data) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -27,13 +19,28 @@ function createCard(data) {
   return card;
 }
 
-// Load Cards into the Container
-function loadCards() {
-  cardsData.forEach(data => {
-    const card = createCard(data);
+// Fetch Data from MongoDB via Backend API and Load Cards
+async function loadCards() {
+  try {
+    const response = await fetch('http://localhost:4000/api/cards/random'); 
+    if (!response.ok) {
+      throw new Error(`Failed to fetch cards: ${response.statusText}`);
+    }
+
+    const cardData = await response.json(); // Fetch a single card (not an array)
+
+    // Create and append the card
+    const card = createCard(cardData);
     cardContainer.appendChild(card);
-  });
+  } catch (error) {
+    console.error("Error loading cards:", error);
+  }
 }
+
+
+// Initialize by Loading Cards
+loadCards();
+loadCards();
 loadCards();
 
 // Swipe Logic
@@ -48,6 +55,7 @@ function handleSwipe(direction) {
   setTimeout(() => {
     activeCard.remove();
     // Optionally load new cards or perform other actions
+    loadCards();
   }, 500);
 }
 
@@ -59,13 +67,11 @@ likeButton.addEventListener('click', () => {
 
 dislikeButton.addEventListener('click', () => handleSwipe("dislike"));
 
-
 // Messaging Button Event Listener
 messageButton.addEventListener('click', () => {
   console.log("Messages clicked");
   window.location.href = "/messaging";
 });
-
 
 // Event Listener for Edit Profile Button
 editButton.addEventListener('click', async () => {
@@ -88,7 +94,6 @@ editButton.addEventListener('click', async () => {
     console.error("Error fetching user info:", error);
   }
 });
-
 
 closeButton.addEventListener('click', () => {
   const userInfoSection = document.querySelector('.user-info');

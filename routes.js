@@ -5,7 +5,7 @@ const path = require('path')
 const router = express.Router()
 let root = path.join(__dirname, './')
 
-
+const Card = require('./models/card.js');
 const User = require(root + '/models/accounts.js')
 
 //home screen
@@ -265,4 +265,20 @@ router.get('/getUserInfo', (req, res) => {
     }
     res.sendFile(root + '/views/messaging.html');
 });
+
+router.get('/api/cards/random', async (req, res) => {
+    try {
+      const randomCard = await Card.aggregate([{ $sample: { size: 1 } }]); // Get one random card
+  
+      if (randomCard.length === 0) {
+        return res.status(404).json({ error: 'No cards found' });
+      }
+  
+      res.status(200).json(randomCard[0]); // Return the random card
+    } catch (error) {
+      console.error('Error fetching random card:', error);
+      res.status(500).json({ error: 'Failed to fetch random card' });
+    }
+  });
+
 module.exports = router
